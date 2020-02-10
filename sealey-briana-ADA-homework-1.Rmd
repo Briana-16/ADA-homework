@@ -1,0 +1,98 @@
+---
+title: "Sealey-briana-ADA-homework-1"
+author: "Briana Sealey"
+date: "2/9/2020"
+output: html_document
+---
+
+#Challenge 1
+
+```{r}
+library("stringr") #load necessary package
+
+darwin <- c("There is grandeur in this view of life, with its several powers, having been originally breathed by the Creator into a few forms or into one; and that, whilst this planet has gone circling on according to the fixed law of gravity, from so simple a beginning endless forms most beautiful and most wonderful have been, and are being evolved")
+
+split_quote <- str_split(darwin, " ", simplify = TRUE) #or should this be false?
+split_quote
+class(split_quote)
+
+
+#Extract every 4th element?
+
+every_fourth <- split_quote[seq(from = 4, to= 60, by = 4)]
+every_fourth #THIS appears to work
+
+every_fourth <- split_quote[seq(1, length(split_quote), 4)]
+every_fourth
+
+#use sort function?
+sort(every_fourth, decreasing = TRUE)
+
+```
+
+#Challenge 2
+
+```{r}
+v <- seq(1, by = 2, len = 80)
+m1 <- matrix(data = v, nrow = 8, ncol = 10, byrow = FALSE)
+
+m1[5,2]
+
+m1[5:7,]
+
+m2 <- m1[3:6,4:9]
+m2
+class(m2)
+
+mode(m2)
+
+```
+
+#Challenge 3
+
+```{r}
+a <- array(data = 400:1, dim = c(5, 5, 4, 4))
+a
+
+a[1, 1, 1, 2]
+a[2, 3, 2, ]
+a[1:5, 1:5, 3, 3]
+
+```
+
+#Challenge 4
+
+```{r}
+#Superfamily
+Lorisoidea <- c("Lorisidae", "Galagidae") #contains families
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Tarsioidea <- c("Tarsiidae")
+Ceboidea <- c("Cebidae", "Atelidae", "Pitheciidae")
+Hominoidea <- c("Hylobatidae", "Hominidae")
+Cercopithecoidea <- c("Cercopithecidae")
+
+
+#Parvorder
+Platyrrhini <- list(Ceboidea)
+Catarrhini <- list(Hominoidea, Cercopithecoidea)
+
+#Infraorder
+Lorisiformes <- list("Lorisoidea"= Lorisoidea)
+Lemuriformes <- list(Lemuroidea)
+Tarsiiformes <- list(Tarsioidea)
+Simiiformes <- list(Platyrrhini, Catarrhini) #these are parvorders
+
+#Suborder
+Haplorhini <- list(Tarsiiformes, Simiiformes)
+Strepsirhini <- list("Lorisiformes" = Lorisiformes, "Lemuriformes" = Lemuriformes)
+
+#Order
+Primates <- list(Strepsirhini, Haplorhini)
+Primates
+
+#Can't do this?
+Primates[[Platyrrhini]]
+nwm <- 
+  
+$ #can't extract??
+```
