@@ -12,20 +12,18 @@ library("stringr") #load necessary package
 
 darwin <- c("There is grandeur in this view of life, with its several powers, having been originally breathed by the Creator into a few forms or into one; and that, whilst this planet has gone circling on according to the fixed law of gravity, from so simple a beginning endless forms most beautiful and most wonderful have been, and are being evolved")
 
-split_quote <- str_split(darwin, " ", simplify = TRUE) #or should this be false?
+#Splitting the quote
+split_quote <- str_split(darwin, " ", simplify = TRUE)
 split_quote
+
 class(split_quote)
 
 
-#Extract every 4th element?
-
+#Creating every_fourth
 every_fourth <- split_quote[seq(from = 4, to= 60, by = 4)]
-every_fourth #THIS appears to work
-
-every_fourth <- split_quote[seq(1, length(split_quote), 4)]
 every_fourth
 
-#use sort function?
+#Sorting every_fourth in reverse alphabetical order
 sort(every_fourth, decreasing = TRUE)
 
 ```
@@ -33,15 +31,22 @@ sort(every_fourth, decreasing = TRUE)
 #Challenge 2
 
 ```{r}
+#Creating matrix
+#Generating odd nunbers from 1 - 159
 v <- seq(1, by = 2, len = 80)
+#Putting them in the matrix
 m1 <- matrix(data = v, nrow = 8, ncol = 10, byrow = FALSE)
 
+#Extracting different components from m1
 m1[5,2]
 
 m1[5:7,]
 
+#Creating new m2 matrix
 m2 <- m1[3:6,4:9]
 m2
+
+#Variable is defined as...
 class(m2)
 
 mode(m2)
@@ -51,9 +56,11 @@ mode(m2)
 #Challenge 3
 
 ```{r}
+#Creating the array
 a <- array(data = 400:1, dim = c(5, 5, 4, 4))
 a
 
+#Extracting specified components
 a[1, 1, 1, 2]
 a[2, 3, 2, ]
 a[1:5, 1:5, 3, 3]
@@ -63,6 +70,7 @@ a[1:5, 1:5, 3, 3]
 #Challenge 4
 
 ```{r}
+#Creating the phylogeny
 #Superfamily
 Lorisoidea <- c("Lorisidae", "Galagidae") #contains families
 Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
@@ -71,28 +79,30 @@ Ceboidea <- c("Cebidae", "Atelidae", "Pitheciidae")
 Hominoidea <- c("Hylobatidae", "Hominidae")
 Cercopithecoidea <- c("Cercopithecidae")
 
-
 #Parvorder
-Platyrrhini <- list(Ceboidea)
-Catarrhini <- list(Hominoidea, Cercopithecoidea)
+Platyrrhini <- list("Ceboidea" = Ceboidea)
+Catarrhini <- list("Hominoidea" = Hominoidea, "Cercopithecoidea" = Cercopithecoidea)
 
 #Infraorder
 Lorisiformes <- list("Lorisoidea"= Lorisoidea)
-Lemuriformes <- list(Lemuroidea)
-Tarsiiformes <- list(Tarsioidea)
-Simiiformes <- list(Platyrrhini, Catarrhini) #these are parvorders
+Lemuriformes <- list("Lemuroidea" = Lemuroidea)
+Tarsiiformes <- list("Tarsioidea" = Tarsioidea)
+Simiiformes <- list("Platyrrhini" = Platyrrhini, "Catarrhini" = Catarrhini) #these are parvorders
 
 #Suborder
-Haplorhini <- list(Tarsiiformes, Simiiformes)
+Haplorhini <- list("Tarsiiformes" = Tarsiiformes, "Simiiformes" = Simiiformes)
 Strepsirhini <- list("Lorisiformes" = Lorisiformes, "Lemuriformes" = Lemuriformes)
 
 #Order
-Primates <- list(Strepsirhini, Haplorhini)
+Primates <- list("Strepsirhini" = Strepsirhini, "Haplorhini" = Haplorhini)
+
+#Making sure each level prints as it's own name
 Primates
 
-#Can't do this?
-Primates[[Platyrrhini]]
-nwm <- 
-  
-$ #can't extract??
+#Extracting new world monkeys with '[[]]'
+nwm <- Simiiformes[["Platyrrhini"]]
+nwm
+
+#Using the '$' sign to extract Tarsiidae
+Haplorhini$Tarsiiformes$Tarsioidea
 ```
